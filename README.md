@@ -4,7 +4,7 @@ Lightweight, Open-Source Interface Suite made in LuaU
 # Requiring
 It's as easy as this:
 ```lua
-  
+local lea = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/petxmr/lea/main/source.lua"))()
 ```
 
 # Documentation
