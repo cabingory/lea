@@ -1,6 +1,8 @@
 # Lea
 Lightweight, Open-Source Interface Suite made in LuaU
 
+More components will be added
+
 # Requiring
 It's as easy as this:
 ```lua
