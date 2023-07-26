@@ -17,9 +17,9 @@ local button = window:CreateButton({
 })
 
 local slider = window:CreateSlider({
-    Name = "Slider"
-    Value = 16
-    Range = {16, 300}
+    Name = "Slider",
+    Value = 16,
+    Range = {16, 300},
     OnChanged = function(v) 
         game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = v
     end
