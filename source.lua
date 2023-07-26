@@ -290,38 +290,36 @@ function InterfaceManager:Begin(title: string)
         table.insert(Components, options)
     end
 
-    task.defer(function()
-        local windowDragging = false
-        local windowInput = nil
-        local windowStart = nil
-        local startPos = nil
+    local windowDragging = false
+    local windowInput = nil
+    local windowStart = nil
+    local startPos = nil
 
-        local function update(input) 
-            local delta = input.Position - windowStart
-            local new = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    local function update(input) 
+        local delta = input.Position - windowStart
+        local new = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 
-            TS:Create(Window, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position=new}):Play()
+        TS:Create(Window, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position=new}):Play()
+    end
+
+    Title.InputBegan:Connect(function(input)
+        if input.UserInputType.Name == "MouseButton1" and not windowDragging then
+            windowDragging = true
+            windowStart = input.Position
+            startPos = Window.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState.Name == "End" then
+                    windowDragging = false
+                end
+            end)
         end
+    end)
 
-        Title.InputBegan:Connect(function(input)
-            if input.UserInputType.Name == "MouseButton1" and not windowDragging then
-                windowDragging = true
-                windowStart = input.Position
-                startPos = Window.Position
-
-                input.Changed:Connect(function()
-                    if input.UserInputState.Name == "End" then
-                        windowDragging = false
-                    end
-                end)
-            end
-        end)
-
-        Title.InputChanged:Connect(function(input)
-            if input == windowInput and windowDragging then
-                update(input)
-            end
-        end)
+    Title.InputChanged:Connect(function(input)
+        if input == windowInput and windowDragging then
+            update(input)
+        end
     end)
 
     return ComponentHandler
