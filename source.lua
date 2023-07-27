@@ -47,6 +47,7 @@ function InterfaceManager:Begin(title: string)
     local Title = Window:WaitForChild("Container"):WaitForChild("Title")
     local Templates = Window:WaitForChild("Container"):WaitForChild("Components"):WaitForChild("Templates")
 
+    Window.Draggable = true
     Window.Visible = OPEN
     Title.Text = title
 
