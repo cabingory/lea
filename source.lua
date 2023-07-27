@@ -41,11 +41,13 @@ end
 
 local InterfaceManager = {}
 
-function InterfaceManager:Begin(title: string) 
+function InterfaceManager:Begin(title: string)
+    local OPEN = true
     local Window = Interface:WaitForChild("Window")
     local Title = Window:WaitForChild("Container"):WaitForChild("Title")
     local Templates = Window:WaitForChild("Container"):WaitForChild("Components"):WaitForChild("Templates")
-    
+
+    Window.Visible = OPEN
     Title.Text = title
 
     Title:WaitForChild("Close").MouseEnter:Connect(function()
@@ -333,6 +335,14 @@ function InterfaceManager:Begin(title: string)
             if input == windowInput and windowDragging then
                 update(input)
             end
+        end)
+
+        UserInputService.InputBegan:Connect(function(i) 
+            if i.KeyCode == Enum.KeyCode.RightShift then 
+                OPEN = not OPEN
+
+                Window.Visible = OPEN
+            end        
         end)
     end)
 
