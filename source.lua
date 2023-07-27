@@ -58,18 +58,6 @@ function InterfaceManager:Begin(title: string)
         TS:Create(Title:WaitForChild("Close"), TweenInfo.new(.2), {ImageColor3=Color3.fromRGB(44, 44, 44)}):Play()
     end)
 
-    Title.MouseEnter:Connect(function()
-        TS:Create(Window:WaitForChild("Dragger"), TweenInfo.new(.2), {BackgroundTransparency=0}):Play()
-        TS:Create(Window:WaitForChild("Dragger"):WaitForChild("UIStroke"), TweenInfo.new(.2), {Transparency=0}):Play()
-        TS:Create(Window:WaitForChild("Dragger"):WaitForChild("OnMouse"), TweenInfo.new(.2), {ImageTransparency=0}):Play()
-    end)
-
-    Title.MouseLeave:Connect(function()
-        TS:Create(Window:WaitForChild("Dragger"), TweenInfo.new(.2), {BackgroundTransparency=1}):Play()
-        TS:Create(Window:WaitForChild("Dragger"):WaitForChild("UIStroke"), TweenInfo.new(.2), {Transparency=1}):Play()
-        TS:Create(Window:WaitForChild("Dragger"):WaitForChild("OnMouse"), TweenInfo.new(.2), {ImageTransparency=1}):Play()
-    end)
-
     Title:WaitForChild("Close").MouseButton1Click:Connect(function()
         if gethui() then 
             for i, v in ipairs(gethui():GetChildren()) do 
@@ -317,7 +305,7 @@ function InterfaceManager:Begin(title: string)
             TS:Create(Window, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position=new}):Play()
         end
 
-        Window:WaitForChild("Dragger").InputBegan:Connect(function(input)
+        Window:WaitForChild("Title").InputBegan:Connect(function(input)
             if input.UserInputType.Name == "MouseButton1" and not windowDragging then
                 windowDragging = true
                 windowStart = input.Position
@@ -331,7 +319,7 @@ function InterfaceManager:Begin(title: string)
             end
         end)
 
-        Window:WaitForChild("Dragger").InputChanged:Connect(function(input)
+        Window:WaitForChild("Title").InputChanged:Connect(function(input)
             if input == windowInput and windowDragging then
                 update(input)
             end
