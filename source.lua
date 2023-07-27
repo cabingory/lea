@@ -45,8 +45,7 @@ function InterfaceManager:Begin(title: string)
     local Window = Interface:WaitForChild("Window")
     local Title = Window:WaitForChild("Container"):WaitForChild("Title")
     local Templates = Window:WaitForChild("Container"):WaitForChild("Components"):WaitForChild("Templates")
-
-    Window.Draggable = true
+    
     Title.Text = title
 
     Title:WaitForChild("Close").MouseEnter:Connect(function()
@@ -304,7 +303,7 @@ function InterfaceManager:Begin(title: string)
             TS:Create(Window, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Position=new}):Play()
         end
 
-        Window:WaitForChild("Drag").InputBegan:Connect(function(input)
+        Window:WaitForChild("Dragger").InputBegan:Connect(function(input)
             if input.UserInputType.Name == "MouseButton1" and not windowDragging then
                 windowDragging = true
                 windowStart = input.Position
@@ -318,7 +317,7 @@ function InterfaceManager:Begin(title: string)
             end
         end)
 
-        Window:WaitForChild("Drag").InputChanged:Connect(function(input)
+        Window:WaitForChild("Dragger").InputChanged:Connect(function(input)
             if input == windowInput and windowDragging then
                 update(input)
             end
