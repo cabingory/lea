@@ -3,7 +3,7 @@ Lightweight, Open-Source Interface Suite made in LuaU
 
 More components will be added
 
-![](https://cdn.discordapp.com/attachments/1122653593728729120/1133843570441322747/Showcase.png)
+![](https://cdn.discordapp.com/attachments/1122653593728729120/1134088859643301908/Showcase.png)
 
 # Requiring
 It's as easy as this:
