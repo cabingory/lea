@@ -337,7 +337,7 @@ function InterfaceManager:Begin(title: string)
             end
         end)
 
-        UserInputService.InputBegan:Connect(function(i) 
+        UIS.InputBegan:Connect(function(i) 
             if i.KeyCode == Enum.KeyCode.RightShift then 
                 OPEN = not OPEN
 
