@@ -5,6 +5,9 @@ More components will be added
 
 ![](https://cdn.discordapp.com/attachments/1122653593728729120/1134088859643301908/Showcase.png)
 
+# Issues
+Drag functionality is broken.
+
 # Requiring
 It's as easy as this:
 ```lua
